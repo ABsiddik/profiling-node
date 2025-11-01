@@ -9,5 +9,7 @@ router.get("/name/:name", StudentBasicController.getByName);
 router.get("/:id", StudentBasicController.getById);
 router.put("/:id", StudentBasicController.update);
 router.delete("/:id", StudentBasicController.delete);
+router.put("/details/:id", StudentBasicController.addOrEditDetails);
+router.get("/details/:id", StudentBasicController.getStudentWithDetails);
 
 export default router;

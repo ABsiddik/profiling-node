@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { IStudentDetails } from "./StudentDetails.js";
 
 export interface IStudentBasic extends Document {
   id: string;
@@ -6,6 +7,7 @@ export interface IStudentBasic extends Document {
   roll: number;
   className: string;
   contact: string;
+  details?: mongoose.Types.ObjectId | IStudentDetails;
 }
 
 const StudentBasicSchema = new Schema<IStudentBasic>(
@@ -15,6 +17,12 @@ const StudentBasicSchema = new Schema<IStudentBasic>(
     roll: { type: Number, required: true },
     className: { type: String, required: true },
     contact: { type: String, required: true},
+    // One-to-one relationship (reference)
+    details: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "StudentDetails",
+      default: null
+    }
   },
   { timestamps: true }
 );
